@@ -2,7 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-@@ you should run this project with Node >= 14.0.0 and npm >= 5.6 @@
+## Note
+
+```diff
++ you should run this project with Node >= 14.0.0 and npm >= 5.6
+```
 
 ## Available Scripts
 
