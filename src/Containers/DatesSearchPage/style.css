@@ -1,0 +1,12 @@
+.date-search {
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: calc(100% - 40px);
+}
+
+.flex-row {
+  display: flex;
+  gap: 20px;
+}
