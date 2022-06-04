@@ -13,13 +13,11 @@ function HotelsPage() {
 
   const [filterHotels, setFilterHotels] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [totalDays, setTotalDays] = useState("");
 
   const [priceRange, setPriceRange] = useState("");
   const [searchName, setSearchName] = useState("");
 
-  const [maxVal, setMaxVal] = useState("");
-  const [minVal, setMinVal] = useState("");
+  const [dataNumbers, setDataNumbers] = useState("");
 
   const filterNamePrice = (price, name) => {
     let newList = [...filterHotels];
@@ -43,11 +41,12 @@ function HotelsPage() {
 
   function filterHotelsFun(dataList) {
     const data = filterHotelsHelper(startDateVal, endDateVal, dataList);
+    setDataNumbers({
+      max: data.max,
+      min: data.min,
+      totalDays: data.totalDays,
+    });
 
-    setMaxVal(data.max);
-    setMinVal(data.min);
-
-    setTotalDays(data.totalDays);
     setFilterHotels(data.listWithPriceFotTotalNights);
     setLoading(false);
   }
@@ -106,8 +105,8 @@ function HotelsPage() {
               <input
                 className="slider"
                 type="range"
-                min={minVal}
-                max={maxVal}
+                min={dataNumbers.min}
+                max={dataNumbers.max}
                 value={priceRange || 0}
                 id="myRange"
                 onChange={(e) => setPriceRange(e.target.value)}
@@ -116,7 +115,7 @@ function HotelsPage() {
           </div>
           <HotelCard
             hotelsList={filterNamePriceList}
-            totalDays={totalDays}
+            totalDays={dataNumbers.totalDays}
             priceRange={priceRange}
             searchName={searchName}
           />

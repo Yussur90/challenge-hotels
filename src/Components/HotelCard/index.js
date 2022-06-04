@@ -50,7 +50,7 @@ function HotelCard({ hotelsList, totalDays, priceRange, searchName }) {
         {sortedData?.map((item, index) => (
           <div className="box" key={index}>
             <div>Name :{item.name}</div>
-            <div>Price :{item.newPrice}</div>
+            <div>Price :{item.newPrice} AED</div>
             <div>City :{item.city}</div>
           </div>
         ))}
