@@ -8,11 +8,8 @@ describe("hotel card", () => {
   });
 
   it("to be in the document", async () => {
-    // Render App
     render(<HotelCard />);
-    // Asynchronously extract header with new text
-    const button = await screen.findByText("kk");
-    // Assert header to have text 'Goodbye!'
+    const button = await screen.findByText("sort by price");
     expect(button).toBeInTheDocument();
   });
 });

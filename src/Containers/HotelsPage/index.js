@@ -81,6 +81,17 @@ function HotelsPage() {
     return "...loading";
   }
 
+  if (!startDateVal || !endDateVal) {
+    return (
+      <div className="empty-component">
+        <h1>
+          There is no data match these range date you should select start date
+          and end date
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <div className="hotel">
       {filterHotels.length ? (

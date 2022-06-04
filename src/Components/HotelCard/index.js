@@ -19,7 +19,6 @@ function HotelCard({ hotelsList, totalDays }) {
 
   return (
     <div className="flex-3">
-      <div data-testid="kk">kk</div>
       <div className="sort-section-container">
         <div className="price-text">Total Nights: {totalDays}</div>
         <div className="sort-section">

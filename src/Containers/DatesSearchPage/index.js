@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./style.css";
 
-function DatesSearchPage(props) {
+function DatesSearchPage() {
   const history = useHistory();
   const [startDate, setStartDate] = useState("2020-10-09");
   const [endDate, setEndDate] = useState("2025-10-09");
-  console.log(history);
+
   return (
     <div className="date-search">
       <div className="flex-row">

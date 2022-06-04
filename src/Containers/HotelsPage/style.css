@@ -38,3 +38,11 @@
   background: #04aa6d;
   cursor: pointer;
 }
+
+.empty-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: red;
+}
