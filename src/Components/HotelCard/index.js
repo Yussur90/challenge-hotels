@@ -3,7 +3,7 @@ import { sortFunction } from "../../helper";
 
 import "./style.css";
 
-function HotelCard({ hotelsList, totalDays }) {
+function HotelCard({ hotelsList, totalDays, priceRange, searchName }) {
   const [filter, setFilter] = useState("");
 
   const sortHotels = () => {
@@ -15,7 +15,10 @@ function HotelCard({ hotelsList, totalDays }) {
     }
   };
 
-  const sortedData = useMemo(() => sortHotels(), [filter, hotelsList]);
+  const sortedData = useMemo(
+    () => sortHotels(),
+    [filter.key, priceRange, searchName]
+  );
 
   return (
     <div className="flex-3">

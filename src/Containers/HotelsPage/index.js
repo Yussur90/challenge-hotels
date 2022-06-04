@@ -11,7 +11,6 @@ function HotelsPage() {
   const startDateVal = query.get("startDate");
   const endDateVal = query.get("endDate");
 
-  const [hotels, setHotels] = useState([]);
   const [filterHotels, setFilterHotels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [totalDays, setTotalDays] = useState("");
@@ -39,22 +38,19 @@ function HotelsPage() {
 
   const filterNamePriceList = useMemo(
     () => filterNamePrice(priceRange, searchName),
-    [priceRange, searchName, filterHotels]
+    [priceRange, searchName, loading]
   );
 
-  function filterHotelsFun() {
-    const data = filterHotelsHelper(startDateVal, endDateVal, hotels);
+  function filterHotelsFun(dataList) {
+    const data = filterHotelsHelper(startDateVal, endDateVal, dataList);
 
     setMaxVal(data.max);
     setMinVal(data.min);
 
     setTotalDays(data.totalDays);
     setFilterHotels(data.listWithPriceFotTotalNights);
+    setLoading(false);
   }
-
-  useEffect(() => {
-    filterHotelsFun();
-  }, [startDateVal, endDateVal, loading]);
 
   function fetchHotels() {
     fetch("https://run.mocky.io/v3/48244d7b-52e9-4b5f-b122-bd763e53fa5c")
@@ -68,14 +64,13 @@ function HotelsPage() {
         convertToArray.splice(convertToArray.length - 2, 2);
         const joinArr = convertToArray.join("\n");
         const result = joinArr + "}]";
-        setHotels(JSON.parse(result));
-        setLoading(false);
+        filterHotelsFun(JSON.parse(result));
       });
   }
 
   useEffect(() => {
     fetchHotels();
-  }, []);
+  }, [startDateVal, endDateVal]);
 
   if (loading) {
     return "...loading";
@@ -93,9 +88,9 @@ function HotelsPage() {
   }
 
   return (
-    <div className="hotel">
+    <>
       {filterHotels.length ? (
-        <>
+        <div className="hotel">
           <div className="section">
             <div className="first-section">
               <input
@@ -119,10 +114,19 @@ function HotelsPage() {
               ></input>
             </div>
           </div>
-          <HotelCard hotelsList={filterNamePriceList} totalDays={totalDays} />
-        </>
-      ) : null}
-    </div>
+          <HotelCard
+            hotelsList={filterNamePriceList}
+            totalDays={totalDays}
+            priceRange={priceRange}
+            searchName={searchName}
+          />
+        </div>
+      ) : (
+        <div className="empty-component">
+          <h1>there is no data match these days</h1>
+        </div>
+      )}
+    </>
   );
 }
 
