@@ -35,7 +35,7 @@ function HotelCard({ hotelsList, totalDays }) {
           <button
             onClick={() =>
               setFilter({
-                price: "price",
+                key: "price",
               })
             }
           >
@@ -46,9 +46,9 @@ function HotelCard({ hotelsList, totalDays }) {
       <div className="box-wrapper">
         {sortedData?.map((item, index) => (
           <div className="box" key={index}>
-            <div>{item.available_on}</div>
-            <div>{item.name}</div>
-            <div>{item.newPrice}</div>
+            <div>Name :{item.name}</div>
+            <div>Price :{item.newPrice}</div>
+            <div>City :{item.city}</div>
           </div>
         ))}
       </div>
